@@ -1,0 +1,22 @@
+{
+  "applications": ["jhpetclinic"],
+  "changelogDate": "20200627071806",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "types",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "maxlength"],
+      "fieldValidateRulesMaxlength": "80"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PetType",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}

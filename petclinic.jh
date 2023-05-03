@@ -1,0 +1,83 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType jwt
+    baseName jhpetclinic
+    blueprints []
+    buildTool gradle
+    cacheProvider ehcache
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme flatly
+    clientThemeVariant primary
+    creationTimestamp 1593242106360
+    databaseType sql
+    devDatabaseType postgresql
+    dtoSuffix DTO
+    embeddableLaunchScript false
+    enableHibernateCache true
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix jhi
+    jhipsterVersion "6.9.1"
+    jwtSecretKey "ZTE1Y2VjNGQ2OTAyOWFlMDNkNzg3YmQyMmI3YTI1ZThhMGVhMTM1ZjkzN2E5NDRkODU2ZGZkOTI1ZWVhZTk2Y2M2NjY1Y2M0NjZlMGU3ZmEyY2M0N2M1OGJiOGUzODE2M2YzNzgyOGUwYjNjZmE4NWNhNjAyMWRkY2E3MjIyMDQ="
+    languages [en]
+    messageBroker false
+    nativeLanguage en
+    otherModules []
+    packageName org.jhipster.petclinic
+    prodDatabaseType postgresql
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType false
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks []
+//    useSass true
+    websocket false
+  }
+
+  entities Owner, Pet, PetType, Specialty, Vet, Visit
+}
+
+entity Owner (owners) {
+  firstName String required maxlength(30),
+  lastName String required maxlength(30),
+  address String required maxlength(255),
+  city String required maxlength(80),
+  telephone String required maxlength(20)
+}
+entity Pet (pets) {
+  name String required maxlength(30),
+  birthDate LocalDate
+}
+entity PetType (types) {
+  name String required maxlength(80)
+}
+entity Specialty (specialties) {
+  name String required maxlength(80)
+}
+entity Vet (vets) {
+  firstName String required maxlength(30),
+  lastName String required maxlength(30)
+}
+entity Visit (visits) {
+  visitDate LocalDate,
+  description String required maxlength(255)
+}
+relationship OneToMany {
+  Owner{pets} to Pet{owner(lastName)},
+  Pet{visits} to Visit{pet(name)}
+}
+relationship ManyToOne {
+  Pet{type(name)} to PetType
+}
+relationship ManyToMany {
+  Vet{specialties(name)} to Specialty{vets}
+}
+
+dto Owner, Pet, PetType, Specialty, Vet, Visit with mapstruct
+paginate Owner, Pet, PetType, Specialty, Vet, Visit with pagination
+service Owner, Pet, PetType, Specialty, Vet, Visit with serviceImpl
+filter Owner, Pet, Vet, Visit
