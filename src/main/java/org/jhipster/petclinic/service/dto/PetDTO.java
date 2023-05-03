@@ -2,7 +2,9 @@ package org.jhipster.petclinic.service.dto;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 import javax.validation.constraints.*;
 
 /**
@@ -22,6 +24,8 @@ public class PetDTO implements Serializable {
     private PetTypeDTO type;
 
     private OwnerDTO owner;
+
+    private Set<VisitDTO> visits = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -82,6 +86,14 @@ public class PetDTO implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(this.id);
+    }
+
+    public Set<VisitDTO> getVisits() {
+        return visits;
+    }
+
+    public void setVisits(Set<VisitDTO> visits) {
+        this.visits = visits;
     }
 
     // prettier-ignore

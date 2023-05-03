@@ -11,7 +11,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link Pet} and its DTO {@link PetDTO}.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { VisitMapper.class })
 public interface PetMapper extends EntityMapper<PetDTO, Pet> {
     @Mapping(target = "type", source = "type", qualifiedByName = "petTypeName")
     @Mapping(target = "owner", source = "owner", qualifiedByName = "ownerLastName")
